@@ -1,7 +1,15 @@
+# Make use of lubridate date-time library for easy date handling
+library("lubridate")
 
+#
+# Load the data from the file  with the appropiate data types and return the data filtered by date
+#
 loadData <- function() {
-    data <- read.csv("data/household_power_consumption.txt", header=TRUE, stringsAsFactors=FALSE, sep=";", na.strings="?")    
     
+    ## Load de fiile with na="?"
+    data <- read.csv("data/household_power_consumption.txt", header=TRUE, stringsAsFactors=FALSE, sep=";", na.strings="?")    
+
+    ## Set variable types
     data <- transform(data, Global_active_power = as.numeric(data$Global_active_power), 
                 Global_reactive_power =as.numeric(data$Global_active_power), 
                 Voltage=as.numeric(data$Voltage), 
